@@ -10,7 +10,9 @@ The first main target for automation in our lab are cell death assays, which mea
 
 ### Tests to Visualize
 -   Cell Death Assay (Bar Graph)
+    ![viability](https://github.com/roh0002/Scripting-project/blob/main/viability.png)
 -   Viral Growth Curve (Line Graph - multiple lines) 
-
+    ![growth curve](https://github.com/roh0002/Scripting-project/blob/main/viral_growth_curve.jpg)
+    
 
 
