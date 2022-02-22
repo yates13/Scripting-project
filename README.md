@@ -1,5 +1,5 @@
 
-## Automating Routine Data Visualization
+## Automating Routine Data Visualization - Python Scripting Project
 
 ### Shawn Yates and Rachel Haich
  
