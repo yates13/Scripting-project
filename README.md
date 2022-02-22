@@ -13,3 +13,4 @@ The first main target for automation in our lab are cell death assays, which mea
 -   Viral Growth Curve (Line Graph - multiple lines) 
 
 
+
