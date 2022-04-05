@@ -5,7 +5,9 @@ import pandas as pd
 import openpyxl
 import matplotlib.pyplot as plt  
 
-dataset = pd.read_excel('cell_death.xlsx')
+
+#import argument as dataset (.xlsx format)
+dataset = pd.read_excel(sys.argv[1])
 print(dataset)
 
 #def cell_death():
