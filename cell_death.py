@@ -6,15 +6,11 @@ import openpyxl
 import matplotlib.pyplot as plt  
 
 
-#import argument as dataset (.xlsx format)
 dataset = pd.read_excel(sys.argv[1])
 print(dataset)
 
-#def cell_death():
-#    print('Opening cell_death.xlsx ')
-#    with open('cell_death.xlsx ', 'r') as in_stream:
-#            print('Opening output.txt')
-#    pass
-
-#if __name__ == '__main__':
-    #cell_death()
+def needle(infile, line_iterator,pos):
+    print('room1.txt')
+    with open('room1.txt', 'r') as in_stream:
+        print('Opening output.txt')
+        with open('needles.txt', 'w') as out_stream:
