@@ -3,11 +3,12 @@
 import sys
 import pandas as pd
 import openpyxl
+from openpyxl.chart import BarChart,Reference
 import matplotlib.pyplot as plt  
 
 
-dataset = pd.read_excel(sys.argv[1])
-print(dataset)
+wb = pd.read_excel(sys.argv[1])
+print(wb)
 
 def needle(infile, line_iterator,pos):
     print('room1.txt')
@@ -16,17 +17,9 @@ def needle(infile, line_iterator,pos):
         with open('needles.txt', 'w') as out_stream:
 # import openpyxl module
 
-import openpyxl
-
-# import BarChart class from openpyxl.chart sub_module
-
-from openpyxl.chart import BarChart,Reference
-
 # Call a Workbook() function of openpyxl
 
 # to create a new blank Workbook object
-
-wb = openpyxl.Workbook()
 
 # Get workbook active sheet
 
