@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 import sys
+import re
 import pandas as pd
 import openpyxl
 from openpyxl.chart import BarChart,Reference
@@ -25,39 +26,70 @@ print(wb)
 
 # from the active attribute.
 
-sheet = wb.active
+#sheet = wb.active
 
 # write o to 9 in 1st column of the active sheet
+sample_range = wb.iloc[50:300, 1]
+print(sample_range)
+count = 0
+iter = 49
+sample_means = {}
+for i in sample_range:
+    j = re.match('SPL', str(i))
+    iter = iter + 1
+    if j != None:
+        count = count + 1
+        sample_means.update({wb.iloc[iter, 1]:wb.iloc[iter,6]})
+print(sample_means)
+#print(wb.iloc[50:120, 6])
 
-for i in range(10):
+raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
+#print(raw_val)
+raw_val_list = raw_val.split(", ")
+print(raw_val_list)
+adj_mean = []
 
-            sheet.append([i])
+
+norm_pairs = {}
+for i in raw_val_list:
+    norm = input("Which sample should be used to normalize " + i + "?\n")
+    adj_mean.append((sample_means[i]/sample_means[norm])*100)
+  
+print(adj_mean)
+
+
+
+#    print(type(i)) 
+
+#for i in range(10):
+
+#            sheet.append([i])
 
 # create data for plotting
 
-values = Reference(sheet, min_col = 1, min_row = 1,
+#values = Reference(sheet, min_col = 1, min_row = 1,
 
-                                                                        max_col = 1, max_row = 10)
+                                                    #                    max_col = 1, max_row = 10)
 
 # Create object of BarChart class
 
-chart = BarChart()
+#chart = BarChart()
 
 # adding data to the Bar chart object
 
-chart.add_data(values)
+#chart.add_data(values)
 
 # set the title of the chart
 
-chart.title = " BAR-CHART "
+#chart.title = " BAR-CHART "
 
 # set the title of the x-axis
 
-chart.x_axis.title = " X_AXIS "
+#chart.x_axis.title = " X_AXIS "
 
 # set the title of the y-axis
 
-chart.y_axis.title = " Y_AXIS "
+#chart.y_axis.title = " Y_AXIS "
 
 # add chart to the sheet
 
@@ -65,8 +97,8 @@ chart.y_axis.title = " Y_AXIS "
 
 # is anchored to cell E2 .
 
-sheet.add_chart(chart, "E2")
+#sheet.add_chart(chart, "E2")
 
 # save the file
 
-wb.save("barChart.xlsx")
+#wb.save("barChart.xlsx")
