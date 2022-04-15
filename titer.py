@@ -10,22 +10,34 @@ df = pd.read_csv(sys.argv[1])
 #print(df)
 
 
-sample_range = df.iloc[0:150, 1]
+sample_range = df.iloc[0:50, 0]
 #print(sample_range)
 
+# need to make a dictonary that time all the time point and values related to the different
+# types of viruses ( can probably have that be an input like the other scripts 
+
 count = 0
-iter = 49
+iter = 0
 virus = {}
 for i in sample_range:
-    j = re.match('12', str(i))
+    j = re.match('\w', str(i))
     iter = iter + 1
     if j != None:
         count = count + 1
-        sample_means.update({wb.iloc[iter, 1]:wb.iloc[iter,6]})
-print(sample_means)
+        virus.update({df.iloc[iter, 0]:df.iloc[iter,1]})
+    else:
+        quit()
+print(virus)
+
+counts = []
+frequencies = []
+
+for d in csv.DictReader(open('yourfile.csv'), delimiter='\t'):
+    counts.append(int(d['Counts']))
+    frequencies.append(int(d['frequency']))
 
 
-raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
+#raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
 
 
 
