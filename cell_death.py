@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+
+#importing necessary packages
 import sys
 import re
 import pandas as pd
@@ -7,49 +9,37 @@ import openpyxl
 from openpyxl.chart import BarChart,Reference
 import matplotlib.pyplot as plt  
 
-
+#read in excel document from command line argument
 wb = pd.read_excel(sys.argv[1])
-print(wb)
+#print(wb)
 
-#def needle(infile, line_iterator,pos):
-#    print('room1.txt')
-#    with open('room1.txt', 'r') as in_stream:
-#        print('Opening output.txt')
-#        with open('needles.txt', 'w') as out_stream:
-# import openpyxl module
-
-# Call a Workbook() function of openpyxl
-
-# to create a new blank Workbook object
-
-# Get workbook active sheet
-
-# from the active attribute.
-
-#sheet = wb.active
-
-# write o to 9 in 1st column of the active sheet
+#set range to search for sample list 
 sample_range = wb.iloc[50:300, 1]
 print(sample_range)
+
+#initialize sample count (count), line iterator (iter), and sample mean dictionary (sample_means)
 count = 0
 iter = 49
 sample_means = {}
+
+#Searching for samples in sample range using regex
 for i in sample_range:
     j = re.match('SPL', str(i))
     iter = iter + 1
+    #Adding sample name and mean to sample means dict if match found
     if j != None:
         count = count + 1
         sample_means.update({wb.iloc[iter, 1]:wb.iloc[iter,6]})
 print(sample_means)
 #print(wb.iloc[50:120, 6])
 
+#Prompting user for normalization
 raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
-#print(raw_val)
 raw_val_list = raw_val.split(", ")
 print(raw_val_list)
 adj_mean = []
 
-
+#Prompting user for control sample for each previous entry
 norm_pairs = {}
 for i in raw_val_list:
     norm = input("Which sample should be used to normalize " + i + "?\n")
