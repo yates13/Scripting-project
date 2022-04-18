@@ -8,20 +8,20 @@ import pandas as pd
 import openpyxl
 from openpyxl.chart import BarChart,Reference
 import matplotlib.pyplot as plt  
-
+import numpy as np
 #read in excel document from command line argument
 wb = pd.read_excel(sys.argv[1])
 #print(wb)
 
 #set range to search for sample list 
 sample_range = wb.iloc[50:300, 1]
-print(sample_range)
+#print(sample_range)
 
-#initialize sample count (count), line iterator (iter), and sample mean dictionary (sample_means)
+#initialize sample count (count), line iterator (iter), sample mean dictionary (sample_means), and sample names dictionary (sample_names)
 count = 0
 iter = 49
 sample_means = {}
-
+sample_names = {}
 #Searching for samples in sample range using regex
 for i in sample_range:
     j = re.match('SPL', str(i))
@@ -30,56 +30,41 @@ for i in sample_range:
     if j != None:
         count = count + 1
         sample_means.update({wb.iloc[iter, 1]:wb.iloc[iter,6]})
-print(sample_means)
-#print(wb.iloc[50:120, 6])
+        sample_names.update({wb.iloc[iter, 1]:wb.iloc[iter,2]})
 
 #Prompting user for normalization
 raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
 raw_val_list = raw_val.split(", ")
-print(raw_val_list)
-adj_mean = []
+
+#initialize adjusted mean list for vectors 
+norm_means = {}
 
 #Prompting user for control sample for each previous entry
-norm_pairs = {}
 for i in raw_val_list:
     norm = input("Which sample should be used to normalize " + i + "?\n")
-    adj_mean.append((sample_means[i]/sample_means[norm])*100)
-  
-print(adj_mean)
+    adj_mean = (sample_means[i]/sample_means[norm])*100
+    norm_means.update({i:adj_mean})
+#    print(adj_mean)
+
+
+names = sample_names.values()
+index = np.arange(len(raw_val_list)) + 0.3
+mean_values = norm_means.values()
+#print(norm_means)
+#print(sample_names)
+
+print(mean_values)
+p1 = plt.bar(index, mean_values)
+plt.title('Cell Death Assay')
+plt.bar_label(p1, Labels=raw_val_list)
+plt.ylabel('Mean Luminescence (Normalized)')
+plt.show()
 
 
 
-#    print(type(i)) 
 
-#for i in range(10):
-
-#            sheet.append([i])
-
-# create data for plotting
-
-#values = Reference(sheet, min_col = 1, min_row = 1,
-
-                                                    #                    max_col = 1, max_row = 10)
 
 # Create object of BarChart class
-
-#chart = BarChart()
-
-# adding data to the Bar chart object
-
-#chart.add_data(values)
-
-# set the title of the chart
-
-#chart.title = " BAR-CHART "
-
-# set the title of the x-axis
-
-#chart.x_axis.title = " X_AXIS "
-
-# set the title of the y-axis
-
-#chart.y_axis.title = " Y_AXIS "
 
 # add chart to the sheet
 
