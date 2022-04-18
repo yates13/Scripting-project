@@ -4,19 +4,43 @@ import sys
 import pandas as pd
 import csv
 import re
-import matplotlib.pyplot as plt  
+import matplotlib.pyplot as plt
 
 df = pd.read_csv(sys.argv[1])
-print(df)
+#print(df)
+
+Virus = df.iloc[0:50, 0]
+print(Virus)
+
+def unique(list1):
+
+    # initialize a null list
+    unique_list = []
+
+    # traverse for all elements
+    for x in list1:
+        # check if exists in unique_list or not
+        if x not in unique_list:
+            unique_list.append(x)
+    return(unique_list)
+
+virus_list = unique(Virus)
+
+#print("out")
+#print(virus_list)
 
 
+for x in virus_list:
+    globals()[f"dict_{x}"] = {}
+    iter = 0
+    print(x)
+    for i in Virus:
+#        print(i)
+        if i == x:
+            globals()[f"dict_{x}"].update({df.iloc[iter, 2]:df.iloc[iter, 1]})
+        iter = iter + 1
+    print(globals()[f"dict_{x}"])
 
-#df_name = pd.DataFrame([1,2,3])
-#df_name[0].plot(kind='bar')
-
-#plt.show()
-#Virus = df.iloc[0:50, 0]
-#print(Virus)
 
 #hour = df.iloc[0:50, 2]
 #print(hour)
@@ -27,12 +51,14 @@ print(df)
 #plt.plot(hour)
 #plt.plot(log_pfu)
 #plt.plot(Virus, color = 'green')
-df.plot.line()
-plt.title('Viral Growth Curve')
-plt.xlabel('Hours')
-plt.ylabel('Log_PFU')
-plt.legend(loc='upper left')
-plt.show()
+
+######this works
+#df.plot.line()
+#plt.title('Viral Growth Curve')
+#plt.xlabel('Hours')
+#plt.ylabel('Log_PFU')
+#plt.legend(loc='upper left')
+#plt.show()
 
 
 
