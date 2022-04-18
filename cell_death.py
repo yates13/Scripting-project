@@ -7,15 +7,13 @@ import re
 import pandas as pd
 import openpyxl
 from openpyxl.chart import BarChart,Reference
-import matplotlib.pyplot as plt  
+import matplotlib.pyplot as plt
 import numpy as np
 #read in excel document from command line argument
 wb = pd.read_excel(sys.argv[1])
-#print(wb)
 
-#set range to search for sample list 
+#set range to search for sample list
 sample_range = wb.iloc[50:300, 1]
-#print(sample_range)
 
 #initialize sample count (count), line iterator (iter), sample mean dictionary (sample_means), and sample names dictionary (sample_names)
 count = 0
@@ -36,7 +34,7 @@ for i in sample_range:
 raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
 raw_val_list = raw_val.split(", ")
 
-#initialize adjusted mean list for vectors 
+#initialize adjusted mean list for vectors
 norm_means = {}
 
 #Prompting user for control sample for each previous entry
@@ -50,8 +48,6 @@ for i in raw_val_list:
 names = sample_names.values()
 index = np.arange(len(raw_val_list)) + 0.3
 mean_values = norm_means.values()
-#print(norm_means)
-#print(sample_names)
 
 print(mean_values)
 p1 = plt.bar(index, mean_values)
@@ -61,19 +57,3 @@ plt.ylabel('Mean Luminescence (Normalized)')
 plt.show()
 
 
-
-
-
-# Create object of BarChart class
-
-# add chart to the sheet
-
-# the top-left corner of a chart
-
-# is anchored to cell E2 .
-
-#sheet.add_chart(chart, "E2")
-
-# save the file
-
-#wb.save("barChart.xlsx")
