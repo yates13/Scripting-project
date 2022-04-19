@@ -31,29 +31,39 @@ for i in sample_range:
         sample_names.update({wb.iloc[iter, 1]:wb.iloc[iter,2]})
 
 #Prompting user for normalization
+raw_val = {}
 raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
 raw_val_list = raw_val.split(", ")
 
 #initialize adjusted mean list for vectors
 norm_means = {}
-
+#print(sample_names)
 #Prompting user for control sample for each previous entry
 for i in raw_val_list:
     norm = input("Which sample should be used to normalize " + i + "?\n")
     adj_mean = (sample_means[i]/sample_means[norm])*100
-    norm_means.update({i:adj_mean})
+    tag = sample_names[i]
+    print(tag)
+    norm_means.update({tag:adj_mean})
+    #print(name)
+
 #    print(adj_mean)
 
+print(norm_means)
 
-names = sample_names.values()
-index = np.arange(len(raw_val_list)) + 0.3
+#names = sample_names.values()
+#index = np.arange(len(raw_val_list)) + 0.3
 mean_values = norm_means.values()
+sample = norm_means.keys()
 
-print(mean_values)
-p1 = plt.bar(index, mean_values)
+#print(mean_values)
+p1 = plt.bar(sample, mean_values)
+#p1 = plt.bar(index, mean_values)
+#p1.set_xticks(names)
 plt.title('Cell Death Assay')
-plt.bar_label(p1, Labels=raw_val_list)
+#plt.bar_label(p1, Labels=raw_val_list)
 plt.ylabel('Mean Luminescence (Normalized)')
+#p1.set_xticklabels(["A","B","C","D"])
 plt.show()
 
 
