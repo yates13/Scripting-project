@@ -1,3 +1,4 @@
+
 #! /usr/bin/env python3
 
 import sys
@@ -10,7 +11,10 @@ df = pd.read_csv(sys.argv[1])
 #print(df)
 
 Virus = df.iloc[0:50, 0]
-print(Virus)
+Virus = [w.replace(' ', '_') for w in Virus]
+#df = [w.replace(' ', '') for w in df]
+
+#print(Virus)
 
 def unique(list1):
 
@@ -25,74 +29,53 @@ def unique(list1):
     return(unique_list)
 
 virus_list = unique(Virus)
-
-#print("out")
-#print(virus_list)
+print(virus_list)
 
 
 for x in virus_list:
     globals()[f"dict_{x}"] = {}
     iter = 0
-    print(x)
     for i in Virus:
-#        print(i)
         if i == x:
             globals()[f"dict_{x}"].update({df.iloc[iter, 2]:df.iloc[iter, 1]})
         iter = iter + 1
-    print(globals()[f"dict_{x}"])
+    globals()[f"keys_{x}"] = list(globals()[f"dict_{x}"].keys())
+    globals()[f"keys_{x}"] = [j.replace(' ', '') for j in globals()[f"keys_{x}"]]
+    globals()[f"values_{x}"] = list(globals()[f"dict_{x}"].values())
+    print(x)
+    print(globals()[f"keys_{x}"])
+#    print(globals()[f"dict_{x}"])
+#print("NEXT")
+#print(dict_WT_Delta_611)
+#print(values_WT_Delta_611)
+#print(keys_WT_Delta_611)
 
-
-#hour = df.iloc[0:50, 2]
+hour = df.iloc[0:50, 2]
+#hour = hour[::-1]
 #print(hour)
 
-#log_pfu = df.iloc[0:50,1]
+
+log_pfu = df.iloc[0:50,1]
 #print(log_pfu)
 
-#plt.plot(hour)
+for x in virus_list:
+    plt.plot(globals()[f"keys_{x}"], globals()[f"values_{x}"])
+
+
+######this works
+plt.title('Viral Growth Curve')
+plt.xlabel('Hours')
+plt.ylabel('Log_PFU')
+plt.legend(virus_list, loc='upper left')
+plt.show()
+
+
+
 #plt.plot(log_pfu)
 #plt.plot(Virus, color = 'green')
 
-######this works
-#df.plot.line()
-#plt.title('Viral Growth Curve')
-#plt.xlabel('Hours')
-#plt.ylabel('Log_PFU')
-#plt.legend(loc='upper left')
-#plt.show()
-
-
-
-
-# need to make a dictonary that time all the time point and values related to the different
-# types of viruses ( can probably have that be an input like the other scripts 
-
-#count = 0
-#iter = 0
-#virus = {}
-#for i in sample_range:
-#    j = re.match('\w', str(i))
-#    iter = iter + 1
- #   if j != None:
-  #      count = count + 1
-   #     virus.update({df.iloc[iter, 0]:df.iloc[iter,1]})
-   # else:
-    #    quit()
-#print(virus)
-
-#counts = []
-#frequencies = []
 
 #for d in csv.DictReader(open('yourfile.csv'), delimiter='\t'):
  #   counts.append(int(d['Counts']))
   #  frequencies.append(int(d['frequency']))
 
-
-#raw_val = input("Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): \n")
-
-
-
-#def needle(infile, line_iterator,pos):
-#    print('room1.txt')
-#    with open('room1.txt', 'r') as in_stream:
-#        print('Opening output.txt')
-#        with open('needles.txt', 'w') as out_stream:
