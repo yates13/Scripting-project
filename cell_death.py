@@ -9,6 +9,7 @@ import openpyxl
 from openpyxl.chart import BarChart,Reference
 import matplotlib.pyplot as plt
 import numpy as np
+
 #read in excel document from command line argument
 wb = pd.read_excel(sys.argv[1])
 
@@ -20,6 +21,7 @@ count = 0
 iter = 49
 sample_means = {}
 sample_names = {}
+
 #Searching for samples in sample range using regex
 for i in sample_range:
     j = re.match('SPL', str(i))
@@ -37,7 +39,7 @@ raw_val_list = raw_val.split(", ")
 
 #initialize adjusted mean list for vectors
 norm_means = {}
-#print(sample_names)
+
 #Prompting user for control sample for each previous entry
 for i in raw_val_list:
     norm = input("Which sample should be used to normalize " + i + "?\n")
@@ -45,25 +47,13 @@ for i in raw_val_list:
     tag = sample_names[i]
     print(tag)
     norm_means.update({tag:adj_mean})
-    #print(name)
 
-#    print(adj_mean)
-
-print(norm_means)
-
-#names = sample_names.values()
-#index = np.arange(len(raw_val_list)) + 0.3
 mean_values = norm_means.values()
 sample = norm_means.keys()
 
-#print(mean_values)
 p1 = plt.bar(sample, mean_values)
-#p1 = plt.bar(index, mean_values)
-#p1.set_xticks(names)
 plt.title('Cell Death Assay')
-#plt.bar_label(p1, Labels=raw_val_list)
 plt.ylabel('Mean Luminescence (Normalized)')
-#p1.set_xticklabels(["A","B","C","D"])
 plt.show()
 
 
