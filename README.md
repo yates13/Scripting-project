@@ -10,18 +10,13 @@ The first main target for automation in our lab are cell death assays, which mea
 
 ### Datasets
 1   cell_death_data_final.xlsx
- details
 2   titer_data.csv
- details
 
 
 ### Scripts
 1   cell_death.py
-- the purpose
 2   titer.py
-- purpose
 3   titer code.R 
-- puro
 
 
 
