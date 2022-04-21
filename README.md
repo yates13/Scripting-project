@@ -10,9 +10,9 @@ The first main target for automation in our lab are cell death assays, which mea
 
 ### Datasets
 1   cell_death_data_final.xlsx
-- details
+ details
 2   titer_data.csv
-- details
+ details
 
 
 ### Scripts
