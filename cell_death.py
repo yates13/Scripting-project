@@ -40,6 +40,7 @@ def plotting(sample, mean_values):
     p1 = plt.bar(sample, mean_values)
     plt.title('Cell Death Assay')
     plt.ylabel('Mean Luminescence (Normalized)')
+    plt.savefig('cell_death.jpg', dpi = 100)
     plt.show()
 
 if __name__ == '__main__':
