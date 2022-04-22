@@ -53,6 +53,7 @@ plt.title('Viral Growth Curve')
 plt.xlabel('Hours')
 plt.ylabel('Log_PFU')
 plt.legend(virus_list, loc='upper left')
+plt.savefig('titer.jpg', dpi = 100)
 plt.show()
 
 
