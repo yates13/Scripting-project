@@ -6,47 +6,40 @@ summary(Titer)
 install.packages("stringr") 
 library("stringr") 
 
+#time point cleanup
 Titer$hour_fix <- str_remove_all(Titer$Hour, " hour")
 Titer$hour_fix=as.numeric(Titer$hour_fix)
 
-#ggplot(data=Titer, aes(x = hour_fix, y = Log_PFU, group = VIRUS))+
-#  geom_line()
-
+#starting a empty plot
 plot(Titer$Log_PFU~Titer$hour_fix, type="n")
-#plot(Titer$hour_fix~Titer$Log_PFU, type="n")
 
-###WT virus
+#plotting virus in lines
+
+###WT viruses
+
+#WT
 lines(Titer$hour_fix[Titer$VIRUS=="WT"],Titer$Log_PFU[Titer$VIRUS=="WT"],
       col="red", type="o")
-
+#WTD611
 lines(Titer$hour_fix[Titer$VIRUS=="WT RES"],Titer$Log_PFU[Titer$VIRUS=="WT RES"],
       col="orange", type="o")
-
+#WTrescue
 lines(Titer$hour_fix[Titer$VIRUS=="WT Delta 611"],Titer$Log_PFU[Titer$VIRUS=="WT Delta 611"],
       col="yellow", type="o")
-####
+
 
 ####MutRHIM virus
+
+#MT
 lines(Titer$hour_fix[Titer$VIRUS=="MT"],Titer$Log_PFU[Titer$VIRUS=="MT"],
       col="green", type="o")
-
+#MTD611
 lines(Titer$hour_fix[Titer$VIRUS=="MT Delta 611"],Titer$Log_PFU[Titer$VIRUS=="MT Delta 611"],
       col="blue", type="o")
-
+#MTrescue
 lines(Titer$hour_fix[Titer$VIRUS=="MT RES"],Titer$Log_PFU[Titer$VIRUS=="MT RES"],
       col="purple", type="o")
-####
 
-#legend(1.2, 0.7, c(paste0("Tree", seq(1,16))), cex=0.6, 
-#       fill=colors, ncol = 2)
 
 legend("topleft",c("WT","WT Delta 611","WT RES","MT","MT Delta 611","MT RES"),lty=1,pch=19, col=c("red","orange","yellow","green","blue","purple"),bty="n")
-
-
-
-#plot.new()
-#?plot
-
-#?str_remove_all
-#str_remove_all(DEI2, "%", "")
 
