@@ -14,12 +14,15 @@ We intend to write a python script for each case which quickly processes the dat
 
 ### Datasets
 1   cell_death_data_final.xlsx
+
 2   titer_data.csv
 
 
 ### Scripts
 1   cell_death.py
+
 2   titer.py
+
 3   titer code.R 
 
 
