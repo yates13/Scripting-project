@@ -13,16 +13,55 @@ The second target is our viral growth curve assays. This requires manual input o
 We wrote a python script for each case which quickly processes the data and presents it in an easy to read, publishable format while reducing the possiblity of user error during visualization. We also wrote an R script which parallels the titer.py format to give users options depending on the language they feel more comfortable using. In total, this repository contains 3 fully commented and documented scripts, two written in python3, and one written in R 4.1.3
 
 ### Example Datasets
-**1   cell_death_data_final.xlsx**
 
-**2   titer_data.csv**
 
+**titer_data.csv**
+
+**cell_death_data_final.xlsx**
 
 ### Scripts
-#### 1)   cell_death.py
+
+#### titer code.R 
+
 **Purpose**
 
-This script provides an interactive interface to graph cell death data from a standardized excel output generated when using the Gen5 plate reading software (version 2.03.1) in combination with the synergy H1 Hybrid Plate Reader. The output file is added to the script as an argument. For example, `python3 cell_death.py cell_death_data_final.xlsx`. The script then prompts the user for samples to be normalized and graphed. Each entry is then normalized to another user input sample:
+This script is a hard coded R script for viral samples commonly used in our lab. This script the viral sample names to extract the time points and viral titers for each sample to generate a line graph. This code is good for quick visualization, but produces a less polished and less reproducible product. In addition, the code must be altered directly in order to visualize different samples. For these reasons, we reccommend the python code for most visualization.  
+
+External Packages
+ - stringr (search for a pattern within a string)
+```
+10 Titer$hour_fix <- str_remove_all(Titer$Hour, " hour")
+```
+---
+
+#### titer.py
+
+**Purpose**
+
+This script uses a lab generated csv template file in order to graph the growth curves of viral assays. The script will determine the number of viral samples in the dataset and will generate a line chart with corresponding time points and viral titer values. The generated graph includes a legend of the viral samples and can be used for comparison across viral growth curves. To use this script, datasets must be entered as a system argument: `python3 titer.py titer_data.csv`. The script will print the unique sample names, which will then be used in the legend of the final graph.  
+
+External Packages
+ - sys (import of user arguments)
+ ```
+ 45     df = pd.read_csv(sys.argv[1])
+ ```
+ - pandas (read in csv files)
+  ```
+ 45     df = pd.read_csv(sys.argv[1])
+ ```
+ - matplotlib
+ ```
+ 35     plt.title('Viral Growth Curve')
+36     plt.xlabel('Hours')
+37     plt.ylabel('Log_PFU')
+```
+---
+
+#### cell_death.py
+
+**Purpose**
+
+This script provides an interactive interface to graph cell death data from a standardized excel output generated when using the Gen5 plate reading software (version 2.03.1) in combination with the synergy H1 Hybrid Plate Reader. The output file is added to the script as an argument. For example, `python3 cell_death.py cell_death_data_final.xlsx`. The script then prompts the user for samples to be normalized and graphed. Each entry is then normalized to another user input sample, which is confirmed through a print statement:
 
 ```
 Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): 
@@ -59,39 +98,6 @@ This will produce a python generated bar chart which is similar to the graphs ge
 38     plt.ylabel('Mean Luminescence (Normalized)')
 ```
 
- ---
-
-#### 2)   titer.py
-
-**Purpose**
-
-This script uses a lab generated csv template file in order to graph the growth curves of viral assays. The script will determine the number of viral samples in the dataset and will generate a line chart with corresponding time points and viral titer values. The generated graph includes a legend of the viral samples and can be used for comparison across viral growth curves. To use this script, datasets must be entered as a system argument: `python3 titer.py titer_data.csv`. The script will print the unique sample names, which will then be used in the legend of the final graph.  
-
-External Packages
- - sys (import of user arguments)
- ```
- 45     df = pd.read_csv(sys.argv[1])
- ```
- - pandas (read in csv files)
-  ```
- 45     df = pd.read_csv(sys.argv[1])
- ```
- - matplotlib
- ```
- 35     plt.title('Viral Growth Curve')
-36     plt.xlabel('Hours')
-37     plt.ylabel('Log_PFU')
-```
-
----
-
-#### 3)   titer code.R 
-
-External Packages
- - stringr (search for a pattern within a string)
-```
-10 Titer$hour_fix <- str_remove_all(Titer$Hour, " hour")
-```
 
 
 
