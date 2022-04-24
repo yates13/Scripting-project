@@ -3,8 +3,6 @@
 
 import sys
 import pandas as pd
-import csv
-import re
 import matplotlib.pyplot as plt
 
 
