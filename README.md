@@ -23,10 +23,24 @@ We wrote a python script for each case which quickly processes the data and pres
 
 External Packages
  - sys (import of user arguments)
+ ```
+ 53     wb = pd.read_excel(sys.argv[1])
+```
  - re (regex arguments)
- - pandas (
- - openpyxl
- - matplotlib
+```
+17     for i in sample_range:
+18         j = re.match('SPL', str(i))
+```
+ - pandas (import .xlsx files)
+ ```
+ 53     wb = pd.read_excel(sys.argv[1])
+```
+ - matplotlib (plotting)
+ ```
+37     plt.title('Cell Death Assay')
+38     plt.ylabel('Mean Luminescence (Normalized)')
+```
+ 
 
 #### 2)   titer.py
 
@@ -49,9 +63,10 @@ External Packages
 #### 3)   titer code.R 
 
 External Packages
- - ggplot2
- - stringr
-
+ - stringr (search for a pattern within a string)
+```
+10 Titer$hour_fix <- str_remove_all(Titer$Hour, " hour")
+```
 
 
 ### Tests to Visualize
