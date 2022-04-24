@@ -32,6 +32,10 @@ External Packages
 ```
 10 Titer$hour_fix <- str_remove_all(Titer$Hour, " hour")
 ```
+
+**Output**
+
+![R viral titer line graph](https://github.com/yates13/Scripting-project/blob/main/Photos/R_titer.jpeg)
 ---
 
 #### titer.py
