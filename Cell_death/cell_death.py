@@ -9,11 +9,28 @@ import matplotlib.pyplot as plt
 
 
 def sample(count, iter, sample_means, sample_names):
-#Searching for samples in sample range using regex
+        """
+    Extracts the sample name and means for each unique sample in the given dataset. The function prompts user for samples to be normalized and the associated normalizing sample.
+    ---------
+    Arguments:
+        In:
+            count = empty iteration variable. Increases for each sample
+            iter = empty iteration variable. Increases for each line
+            sample_means = empty dictionary. Updated with sampleID (key) and mean luminescence (value) 
+            sample_names = empty dictionary. Updated with sampleID (key) and sample name (value)
+        Out:
+            raw_val = user input string of samples to be normalized
+            raw_val_list = list of user input, separated by ", "
+            norm = user input string of normalizing values for each sample
+            adj_mean = adjusted sample mean for each value in raw_val_list
+            tag = list of sample names for plotting
+    """
+
+    #Searching for samples in sample range using regex
     for i in sample_range:
         j = re.match('SPL', str(i))
         iter = iter + 1
-    #Adding sample name and mean to sample means dict if match found
+        #Adding sample name and mean to sample means dict if match found
         if j != None:
             count = count + 1
             sample_means.update({wb.iloc[iter, 1]:wb.iloc[iter,6]})
@@ -33,6 +50,20 @@ def sample(count, iter, sample_means, sample_names):
 
 
 def plotting(sample, mean_values):
+    """
+    Generates a bar chart of the normalized viral samples to visualize cell death.
+    ---------
+    Arguments:
+        In:
+            sample = is a list of the samples to be plotted 
+            mean_values = a list of the mean values (luminescence) to be plotted
+        Out:
+            A bar chart that shows the normalized cell death due to viral infection
+    ---------
+    Example:
+        cell_death.jpg
+    """
+
     p1 = plt.bar(sample, mean_values)
     plt.title('Cell Death Assay')
     plt.ylabel('Mean Luminescence (Normalized)')
