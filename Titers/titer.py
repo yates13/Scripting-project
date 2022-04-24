@@ -7,7 +7,17 @@ import matplotlib.pyplot as plt
 
 
 def unique(Virus):
-
+    """
+    Generates a list containing all unique sample names within the dataset (df) 
+    ---------
+    Arguments:
+        In:
+            Virus = all the virus samples that are in the dataset cleaned to make them more uniform
+        Out:
+            unique_list = a list of the unique virus names found in the dataset
+    --------
+    Example:
+    """
     # traverse for all elements
     for x in Virus:
         # check if exists in unique_list or not
@@ -17,6 +27,23 @@ def unique(Virus):
 
 
 def Data(virus_list, Virus, df):
+    """
+    Generates a dictionary that will pull each unique viral sample and match the
+    corresponding  time point and viral titers for each sample
+    ---------
+    Arguments:
+        In:
+            virus_list = a list of the unique virus names found in the dataset
+            Virus = all the virus samples that are in the dataset cleaned to make them more uniform
+            df = the dataframe that the user inputs
+        Out:
+            A dictionary of each viral sample and corresponding time points (dict_sample)
+    --------
+    Example:
+        dict_WT
+        {'0 hour': 3.21, '12 hour ': 2.85, '24 hour': 2.98, '48 hour': 4.99, '72 hour': 5.75, '96 hour ': 6.44, '120 hour': 6.56}
+    """
+
     for x in virus_list:
         globals()[f"dict_{x}"] = {}
         iter = 0
@@ -30,6 +57,18 @@ def Data(virus_list, Virus, df):
         print(x)
 
 def Plotting(virus_list, hour, log_pfu):
+    """
+    Generates a line plot of the viral samples to visualze growth over time
+    ---------
+    Arguments:
+        In:
+            virus_list = is a list of the unique virus found in the dataset
+            hour = a list of all the time points in the dataset
+            log_pfu = a list of all the log_pfu (viral titers) in the dataset
+        Out:
+            A line graph that takes all the viral samples and matches the corresponding time point and log_pfu to graph them as lines on the graph.
+    """
+
     for x in virus_list:
         plt.plot(globals()[f"keys_{x}"], globals()[f"values_{x}"])
     plt.title('Viral Growth Curve')
