@@ -5,11 +5,7 @@
 import sys
 import re
 import pandas as pd
-import openpyxl
-from openpyxl.chart import BarChart,Reference
 import matplotlib.pyplot as plt
-import numpy as np
-
 
 
 def sample(count, iter, sample_means, sample_names):
