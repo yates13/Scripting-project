@@ -20,8 +20,26 @@ We wrote a python script for each case which quickly processes the data and pres
 
 ### Scripts
 #### 1)   cell_death.py
+**Purpose**
 
-External Packages
+This script provides an interactive interface to graph cell death data from a standardized excel output generated when using the Gen5 plate reading software (version 2.03.1) in combination with the synergy H1 Hybrid Plate Reader. The output file is added to the script as an argument. For example, `python3 cell_death.py cell_death_data_final.xlsx`. The script then prompts the user for samples to be normalized and graphed. Each entry is then normalized to another user input sample:
+
+```
+Which samples need to be normalized? Separate by a comma (eg. SPL2, SPL3, SPL4): 
+SPL11, SPL12, SPL13
+Which sample should be used to normalize SPL11?
+SPL8
+SVEC mRHIM
+Which sample should be used to normalize SPL12?
+SPL9
+SVEC mRHIM d611
+Which sample should be used to normalize SPL13?
+SPL10
+SVEC mRHIM rescue 
+```
+This will produce a python generated bar chart which is similar to the graphs generated using GraphPad and can be used for rapid (and free) data visualization. 
+
+**External Packages**
  - sys (import of user arguments)
  ```
  53     wb = pd.read_excel(sys.argv[1])
@@ -40,9 +58,14 @@ External Packages
 37     plt.title('Cell Death Assay')
 38     plt.ylabel('Mean Luminescence (Normalized)')
 ```
- 
+
+ ---
 
 #### 2)   titer.py
+
+**Purpose**
+
+This script uses a lab generated csv template file in order to graph the growth curves of viral assays. The script will determine the number of viral samples in the dataset and will generate a line chart with corresponding time points and viral titer values. The generated graph includes a legend of the viral samples and can be used for comparison across viral growth curves. To use this script, datasets must be entered as a system argument: `python3 titer.py titer_data.csv`. The script will print the unique sample names, which will then be used in the legend of the final graph.  
 
 External Packages
  - sys (import of user arguments)
@@ -60,6 +83,8 @@ External Packages
 37     plt.ylabel('Log_PFU')
 ```
 
+---
+
 #### 3)   titer code.R 
 
 External Packages
@@ -68,12 +93,5 @@ External Packages
 10 Titer$hour_fix <- str_remove_all(Titer$Hour, " hour")
 ```
 
-
-### Tests to Visualize
--   Cell Death Assay (Bar Graph)
-    ![viability](https://github.com/roh0002/Scripting-project/blob/main/viability.png)
--   Viral Growth Curve (Line Graph - multiple lines) 
-    ![growth curve](https://github.com/roh0002/Scripting-project/blob/main/viral_growth_curve.jpg)
-    
 
 
