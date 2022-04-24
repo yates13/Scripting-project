@@ -15,8 +15,6 @@ def unique(Virus):
             Virus = all the virus samples that are in the dataset cleaned to make them more uniform
         Out:
             unique_list = a list of the unique virus names found in the dataset
-    --------
-    Example:
     """
     # traverse for all elements
     for x in Virus:
@@ -67,6 +65,9 @@ def Plotting(virus_list, hour, log_pfu):
             log_pfu = a list of all the log_pfu (viral titers) in the dataset
         Out:
             A line graph that takes all the viral samples and matches the corresponding time point and log_pfu to graph them as lines on the graph.
+    ---------
+    Example:
+        titer.jpg
     """
 
     for x in virus_list:
