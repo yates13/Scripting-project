@@ -55,6 +55,11 @@ External Packages
 36     plt.xlabel('Hours')
 37     plt.ylabel('Log_PFU')
 ```
+
+**Output**
+
+![viral growth curve](https://github.com/yates13/Scripting-project/blob/main/Titers/titer.jpg)
+
 ---
 
 #### cell_death.py
