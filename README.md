@@ -103,6 +103,11 @@ This will produce a python generated bar chart which is similar to the graphs ge
 38     plt.ylabel('Mean Luminescence (Normalized)')
 ```
 
+**Output**
+
+![cell death - bar chart](https://github.com/yates13/Scripting-project/blob/main/Cell_death/cell_death.jpg)
+
+
 
 
 
