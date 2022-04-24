@@ -21,7 +21,7 @@ We wrote a python script for each case which quickly processes the data and pres
 
 ### Scripts
 
-#### titer code.R 
+*titer code.R* 
 
 **Purpose**
 
@@ -38,7 +38,7 @@ External Packages
 ![R viral titer line graph](https://github.com/yates13/Scripting-project/blob/main/Photos/R_titer.jpeg)
 ---
 
-#### titer.py
+*titer.py*
 
 **Purpose**
 
@@ -66,7 +66,7 @@ External Packages
 
 ---
 
-#### cell_death.py
+*cell_death.py*
 
 **Purpose**
 
